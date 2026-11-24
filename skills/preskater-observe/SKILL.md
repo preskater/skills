@@ -4,7 +4,7 @@ description: Observe a release with Grafana golden signals and SLO burn for back
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Observe a release
@@ -13,6 +13,7 @@ Report evidence. Do not declare success from a green sync or a single dashboard.
 
 ## Procedure
 
+0. **Confirm telemetry exists.** If traces, metrics, or logs are missing, run `preskater-instrument` first.
 1. **Set the window.** Deploy start and end, plus an equal window before it as baseline. Use the Grafana deployment annotation when present.
 2. **Backend and web.**
    - Firing alerts in Grafana.

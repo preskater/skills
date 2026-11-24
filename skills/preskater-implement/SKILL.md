@@ -4,7 +4,7 @@ description: Implement an approved plan in small verified increments: create the
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Implement a change

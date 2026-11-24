@@ -4,7 +4,7 @@ description: Run the repository's real checks and report evidence: lint, typeche
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Verify a change

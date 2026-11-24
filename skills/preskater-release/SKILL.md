@@ -4,7 +4,7 @@ description: Prepare and approve a release: derive semver from Conventional Comm
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Release

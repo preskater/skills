@@ -4,7 +4,7 @@ description: Build production artifacts: the Next.js Docker image, the Helm char
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Build artifacts
@@ -19,7 +19,7 @@ Produce artifacts. Do not deploy. `preskater-release` decides the version; this 
 
 ## Procedure
 
-1. **Preflight.** Confirm the tree is clean, the branch is correct, and the version is decided. Read the nearest `AGENTS.md`.
+1. **Preflight.** Confirm the tree is clean, the branch is correct, and the version is decided. Read the nearest `AGENTS.md`. Confirm `instrumentation.ts` exists and the OTel environment variables are configured for runtime.
 2. **Build the web image.**
 
    ```bash

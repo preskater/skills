@@ -4,7 +4,7 @@ description: Write a blameless postmortem after an incident: timeline, contribut
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Postmortem

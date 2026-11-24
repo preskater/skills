@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Nine skills closing the DevOps loop:
+- Ten skills closing the DevOps loop:
   - `preskater-build` — Docker images, Helm charts, and EAS builds
   - `preskater-release` — semver, changelog, chart versions, release candidates, go/no-go
   - `preskater-deploy` — ArgoCD GitOps promotion with Helm, migration gates, and rollback
@@ -18,7 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `preskater-postmortem` — blameless review with owned action items
   - `preskater-adr` — architecture decision records
   - `preskater-docs` — README, runbooks, API, and architecture docs
+  - `preskater-instrument` — Next.js OpenTelemetry, Grafana Alloy, and Expo Observe
   - `preskater-security-review` — authz, secrets, supply chain, and Kubernetes hardening
+- Next.js OpenTelemetry setup and Grafana Alloy pipeline references
 - Delivery, environment, release, observability, and on-call sections in `AGENTS.md`
 - Templates for release, deploy records, incidents, postmortems, ADRs, and runbooks
 - Validator check that `install.sh` bundles match `catalog.json`

@@ -138,6 +138,16 @@ Staging exists for every app. Production changes need explicit approval.
 - Check golden signals and SLO burn before declaring success.
 - Use the already-authenticated `kubectl`, `argocd`, `grafana`, and `eas` CLIs. Never print tokens or kubeconfig.
 
+### Instrumentation
+
+- Next.js: `instrumentation.ts` at the app root (`apps/web/`) with `@vercel/otel`; `serviceName` matches the app.
+- Export OTLP to Grafana Alloy with `OTEL_EXPORTER_OTLP_ENDPOINT`.
+- Set `OTEL_RESOURCE_ATTRIBUTES=deployment.environment=...,service.version=...`.
+- Manual `NodeSDK` is Node-only. Use `BatchSpanProcessor` in production.
+- Expo: `expo-observe` configured at startup with an explicit environment.
+- No PII, secrets, or request bodies in spans, logs, or metrics.
+- Verify one request produces a trace before the first production deploy.
+
 ## On-call
 
 - S1 and S2 incidents follow `preskater-incident`; postmortems follow `preskater-postmortem`.

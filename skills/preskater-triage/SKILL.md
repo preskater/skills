@@ -4,7 +4,7 @@ description: Triage a bug report or production incident: reproduce, assign sever
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Triage a bug or incident

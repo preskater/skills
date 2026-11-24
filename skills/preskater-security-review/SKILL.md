@@ -4,7 +4,7 @@ description: Security review a change: threat model, authentication and authoriz
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Security review

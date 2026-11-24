@@ -6,7 +6,7 @@ One catalog, one process, three harnesses.
 
 [![CI](https://github.com/preskater/skills/actions/workflows/ci.yml/badge.svg)](https://github.com/preskater/skills/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-15-blue.svg)](catalog.json)
+[![Skills](https://img.shields.io/badge/skills-16-blue.svg)](catalog.json)
 
 ## Quick start
 
@@ -49,12 +49,12 @@ Install a subset to keep startup context small.
 
 | Bundle | Skills |
 | --- | --- |
-| `engineer` | plan, adr, implement, docs, build, verify, security-review, review, pr |
+| `engineer` | plan, adr, implement, docs, instrument, build, verify, security-review, review, pr |
 | `reviewer` | review, security-review, verify |
-| `delivery` | build, release, deploy, observe, security-review |
+| `delivery` | build, instrument, release, deploy, observe, security-review |
 | `on-call` | triage, incident, observe, postmortem |
 | `architect` | plan, adr, review, security-review |
-| `all` | all fifteen (default) |
+| `all` | all sixteen (default) |
 
 ```bash
 ./scripts/install.sh --bundle reviewer
@@ -70,6 +70,7 @@ Install a subset to keep startup context small.
 | `preskater-adr` | Record an architecture decision |
 | `preskater-implement` | Execute an approved plan in small, tested commits |
 | `preskater-docs` | Write README, runbooks, API, and architecture docs |
+| `preskater-instrument` | Instrument Next.js and Expo for OpenTelemetry and Alloy |
 | `preskater-build` | Build Docker, Helm, and EAS artifacts |
 | `preskater-verify` | Run the real checks and report evidence |
 | `preskater-security-review` | Review auth, secrets, supply chain, and Kubernetes hardening |
@@ -92,7 +93,7 @@ plan -> code -> build -> test -> release -> deploy -> operate -> observe -> feed
 
 - `AGENTS.md` is the per-repo baseline: stack, commands, delivery policy, observability, conventions, gotchas.
 - `preskater-plan` and `preskater-adr` anchor work to an issue and a decision.
-- `preskater-implement`, `preskater-docs`, and `preskater-build` produce code, docs, and artifacts.
+- `preskater-implement`, `preskater-docs`, `preskater-instrument`, and `preskater-build` produce code, docs, telemetry, and artifacts.
 - `preskater-verify` and `preskater-security-review` provide evidence.
 - `preskater-pr` ends at merge and hands off to release.
 - `preskater-release`, `preskater-deploy`, and `preskater-observe` cover the pipeline. ArgoCD is the only staging and production path; migrations run as a PreSync Job.
@@ -102,6 +103,7 @@ plan -> code -> build -> test -> release -> deploy -> operate -> observe -> feed
 
 ## Delivery and operations
 
+- **Instrument:** Next.js OpenTelemetry through `instrumentation.ts` and `@vercel/otel`, exported to Grafana Alloy; Expo Observe for mobile.
 - **Build:** Docker images by digest, Helm charts, and EAS builds.
 - **Release:** semver from Conventional Commits, changelog, `Chart.yaml` version and `appVersion`, release candidates.
 - **Deploy:** ArgoCD + Helm, staging then production, `<app>-migrate` PreSync Job, smoke tests, rollback.

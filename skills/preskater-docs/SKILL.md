@@ -4,7 +4,7 @@ description: Write and update documentation: README, runbooks, API reference, an
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Documentation

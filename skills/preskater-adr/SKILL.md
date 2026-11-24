@@ -4,7 +4,7 @@ description: Record an architecture decision with context, options, decision, co
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Architecture decision record

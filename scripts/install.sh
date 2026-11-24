@@ -66,16 +66,16 @@ done
 
 case "$BUNDLE" in
   all)
-    SKILLS=(preskater-plan preskater-adr preskater-implement preskater-docs preskater-build preskater-verify preskater-security-review preskater-review preskater-pr preskater-release preskater-deploy preskater-observe preskater-triage preskater-incident preskater-postmortem)
+    SKILLS=(preskater-plan preskater-adr preskater-implement preskater-docs preskater-instrument preskater-build preskater-verify preskater-security-review preskater-review preskater-pr preskater-release preskater-deploy preskater-observe preskater-triage preskater-incident preskater-postmortem)
     ;;
   engineer)
-    SKILLS=(preskater-plan preskater-adr preskater-implement preskater-docs preskater-build preskater-verify preskater-security-review preskater-review preskater-pr)
+    SKILLS=(preskater-plan preskater-adr preskater-implement preskater-docs preskater-instrument preskater-build preskater-verify preskater-security-review preskater-review preskater-pr)
     ;;
   reviewer)
     SKILLS=(preskater-review preskater-security-review preskater-verify)
     ;;
   delivery)
-    SKILLS=(preskater-build preskater-release preskater-deploy preskater-observe preskater-security-review)
+    SKILLS=(preskater-build preskater-instrument preskater-release preskater-deploy preskater-observe preskater-security-review)
     ;;
   on-call)
     SKILLS=(preskater-triage preskater-incident preskater-observe preskater-postmortem)

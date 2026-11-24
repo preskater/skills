@@ -4,7 +4,7 @@ description: Deploy through ArgoCD and Helm: promote staging to production, run 
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Deploy with ArgoCD
@@ -29,7 +29,7 @@ ArgoCD is the only staging and production deploy path. Docker Compose is for loc
    argocd app get <app>-<env>
    ```
 
-   Confirm the environment, image digest, chart version, and migration image. Stop if any is ambiguous.
+   Confirm the environment, image digest, chart version, and migration image. Confirm the OTel endpoint is configured and the collector is reachable. Stop if any is ambiguous.
 2. **Validate locally.**
 
    ```bash
@@ -88,3 +88,4 @@ A deploy record with environment, digests, ArgoCD revision, sync ID, migration r
 - If the Application auto-syncs, a Git commit can deploy without a human. Confirm approval before committing production values.
 - Never paste kubeconfig, tokens, or secret values into logs or the PR.
 - Never deploy from an unmerged branch or a mutable tag.
+- A deploy with no OTLP endpoint is blind. Confirm one trace reaches the collector before declaring success.

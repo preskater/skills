@@ -4,7 +4,7 @@ description: Run an active incident: declare severity, assign incident, communic
 license: MIT
 metadata:
   owner: platform
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Run an incident
