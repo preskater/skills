@@ -1,0 +1,86 @@
+{
+  "name": "preskater-skills",
+  "version": "0.1.0",
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "preskater-plan",
+      "path": "skills/preskater-plan",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.1.0",
+      "summary": "Plan a change and stop for approval."
+    },
+    {
+      "name": "preskater-implement",
+      "path": "skills/preskater-implement",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.1.0",
+      "summary": "Execute an approved plan in small, tested commits."
+    },
+    {
+      "name": "preskater-verify",
+      "path": "skills/preskater-verify",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.1.0",
+      "summary": "Run the real checks and report evidence."
+    },
+    {
+      "name": "preskater-review",
+      "path": "skills/preskater-review",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.1.0",
+      "summary": "Severity-ranked review against the linked issue."
+    },
+    {
+      "name": "preskater-triage",
+      "path": "skills/preskater-triage",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.1.0",
+      "summary": "Triage bugs and incidents, then write the issue."
+    },
+    {
+      "name": "preskater-pr",
+      "path": "skills/preskater-pr",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.1.0",
+      "summary": "Open a PR/MR with evidence and land it through review."
+    }
+  ],
+  "bundles": {
+    "engineer": [
+      "preskater-plan",
+      "preskater-implement",
+      "preskater-verify",
+      "preskater-review",
+      "preskater-pr"
+    ],
+    "reviewer": [
+      "preskater-review",
+      "preskater-verify"
+    ],
+    "on-call": [
+      "preskater-triage",
+      "preskater-implement",
+      "preskater-verify",
+      "preskater-pr"
+    ],
+    "architect": [
+      "preskater-plan",
+      "preskater-review"
+    ],
+    "all": [
+      "preskater-plan",
+      "preskater-implement",
+      "preskater-verify",
+      "preskater-review",
+      "preskater-triage",
+      "preskater-pr"
+    ]
+  }
+}
