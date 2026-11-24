@@ -4,7 +4,7 @@ description: Run the repository's real checks and report evidence: lint, typeche
 license: MIT
 metadata:
   owner: platform
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Verify a change
@@ -25,7 +25,11 @@ Never claim a change works without command output. Report what ran, what passed,
    5. `npm run test:e2e` (Playwright) when a user flow changed
 4. **Fix and rerun.** After a failure, fix the cause and rerun that step. Do not loop more than three times on the same failure; report it instead.
 5. **Check what tests miss.** For UI changes, run the app or the Playwright flow. For schema changes, confirm the migration file exists and was not applied.
-6. **Report.**
+6. **Run conditional checks.**
+   - Security-sensitive change: run `preskater-security-review`.
+   - Performance-sensitive change: run the relevant benchmark or load test.
+   - User-facing UI: run the Playwright flow and check accessibility.
+7. **Report.**
 
 ## Forbidden
 
@@ -55,4 +59,5 @@ Never claim a change works without command output. Report what ran, what passed,
 - Jest and Playwright can pick up each other's files. Check the config before assuming a suite ran.
 - A Turborepo cache hit is not a fresh run. Use `--force` when validating cache-sensitive changes.
 - A green build does not mean the feature works. Say what you actually exercised.
+- A build check is not a build artifact. If the release needs an image or chart, run `preskater-build`.
 - If a check cannot run because of missing credentials or services, say so explicitly instead of omitting it.

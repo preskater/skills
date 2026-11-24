@@ -55,6 +55,8 @@ jobs:
           test -L "$HOME/.claude/skills/preskater-plan"
           ./scripts/install.sh --bundle reviewer
           test -L "$HOME/.agents/skills/preskater-review"
+          ./scripts/install.sh --bundle delivery
+          test -L "$HOME/.agents/skills/preskater-deploy"
           ./scripts/install.sh --uninstall
           test ! -e "$HOME/.agents/skills/preskater-review"
           test ! -e "$HOME/.claude/skills/preskater-plan"

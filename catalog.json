@@ -1,6 +1,6 @@
 {
   "name": "preskater-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "skills": [
     {
@@ -8,79 +8,174 @@
       "path": "skills/preskater-plan",
       "tier": 1,
       "owner": "platform",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "summary": "Plan a change and stop for approval."
+    },
+    {
+      "name": "preskater-adr",
+      "path": "skills/preskater-adr",
+      "tier": 3,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Record an architecture decision."
     },
     {
       "name": "preskater-implement",
       "path": "skills/preskater-implement",
       "tier": 1,
       "owner": "platform",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "summary": "Execute an approved plan in small, tested commits."
+    },
+    {
+      "name": "preskater-docs",
+      "path": "skills/preskater-docs",
+      "tier": 3,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Write README, runbooks, API, and architecture docs."
+    },
+    {
+      "name": "preskater-build",
+      "path": "skills/preskater-build",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Build Docker, Helm, and EAS artifacts."
     },
     {
       "name": "preskater-verify",
       "path": "skills/preskater-verify",
       "tier": 1,
       "owner": "platform",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "summary": "Run the real checks and report evidence."
+    },
+    {
+      "name": "preskater-security-review",
+      "path": "skills/preskater-security-review",
+      "tier": 2,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Review auth, secrets, supply chain, and Kubernetes hardening."
     },
     {
       "name": "preskater-review",
       "path": "skills/preskater-review",
       "tier": 1,
       "owner": "platform",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "summary": "Severity-ranked review against the linked issue."
-    },
-    {
-      "name": "preskater-triage",
-      "path": "skills/preskater-triage",
-      "tier": 1,
-      "owner": "platform",
-      "version": "0.1.0",
-      "summary": "Triage bugs and incidents, then write the issue."
     },
     {
       "name": "preskater-pr",
       "path": "skills/preskater-pr",
       "tier": 1,
       "owner": "platform",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "summary": "Open a PR/MR with evidence and land it through review."
+    },
+    {
+      "name": "preskater-release",
+      "path": "skills/preskater-release",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Version, approve, and tag a release candidate."
+    },
+    {
+      "name": "preskater-deploy",
+      "path": "skills/preskater-deploy",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Deploy through ArgoCD with Helm and migration gates."
+    },
+    {
+      "name": "preskater-observe",
+      "path": "skills/preskater-observe",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Check Grafana signals and Expo Observe after a deploy."
+    },
+    {
+      "name": "preskater-triage",
+      "path": "skills/preskater-triage",
+      "tier": 1,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Triage bugs and incidents, then write the issue."
+    },
+    {
+      "name": "preskater-incident",
+      "path": "skills/preskater-incident",
+      "tier": 2,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Run an active incident and keep the timeline."
+    },
+    {
+      "name": "preskater-postmortem",
+      "path": "skills/preskater-postmortem",
+      "tier": 2,
+      "owner": "platform",
+      "version": "0.2.0",
+      "summary": "Write a blameless postmortem with owned action items."
     }
   ],
   "bundles": {
     "engineer": [
       "preskater-plan",
+      "preskater-adr",
       "preskater-implement",
+      "preskater-docs",
+      "preskater-build",
       "preskater-verify",
+      "preskater-security-review",
       "preskater-review",
       "preskater-pr"
     ],
     "reviewer": [
       "preskater-review",
+      "preskater-security-review",
       "preskater-verify"
+    ],
+    "delivery": [
+      "preskater-build",
+      "preskater-release",
+      "preskater-deploy",
+      "preskater-observe",
+      "preskater-security-review"
     ],
     "on-call": [
       "preskater-triage",
-      "preskater-implement",
-      "preskater-verify",
-      "preskater-pr"
+      "preskater-incident",
+      "preskater-observe",
+      "preskater-postmortem"
     ],
     "architect": [
       "preskater-plan",
-      "preskater-review"
+      "preskater-adr",
+      "preskater-review",
+      "preskater-security-review"
     ],
     "all": [
       "preskater-plan",
+      "preskater-adr",
       "preskater-implement",
+      "preskater-docs",
+      "preskater-build",
       "preskater-verify",
+      "preskater-security-review",
       "preskater-review",
+      "preskater-pr",
+      "preskater-release",
+      "preskater-deploy",
+      "preskater-observe",
       "preskater-triage",
-      "preskater-pr"
+      "preskater-incident",
+      "preskater-postmortem"
     ]
   }
 }

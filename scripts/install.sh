@@ -18,7 +18,7 @@ Install Preskater skills into the user-level skill directories.
 Usage: scripts/install.sh [options]
 
 Options:
-  --bundle <name>   engineer | reviewer | on-call | architect | all (default: all)
+  --bundle <name>   engineer | reviewer | delivery | on-call | architect | all (default: all)
   --dry-run         Print actions without changing anything
   --uninstall       Remove links created by this script
   --force           Replace existing files or links at the target path
@@ -66,19 +66,22 @@ done
 
 case "$BUNDLE" in
   all)
-    SKILLS=(preskater-plan preskater-implement preskater-verify preskater-review preskater-triage preskater-pr)
+    SKILLS=(preskater-plan preskater-adr preskater-implement preskater-docs preskater-build preskater-verify preskater-security-review preskater-review preskater-pr preskater-release preskater-deploy preskater-observe preskater-triage preskater-incident preskater-postmortem)
     ;;
   engineer)
-    SKILLS=(preskater-plan preskater-implement preskater-verify preskater-review preskater-pr)
+    SKILLS=(preskater-plan preskater-adr preskater-implement preskater-docs preskater-build preskater-verify preskater-security-review preskater-review preskater-pr)
     ;;
   reviewer)
-    SKILLS=(preskater-review preskater-verify)
+    SKILLS=(preskater-review preskater-security-review preskater-verify)
+    ;;
+  delivery)
+    SKILLS=(preskater-build preskater-release preskater-deploy preskater-observe preskater-security-review)
     ;;
   on-call)
-    SKILLS=(preskater-triage preskater-implement preskater-verify preskater-pr)
+    SKILLS=(preskater-triage preskater-incident preskater-observe preskater-postmortem)
     ;;
   architect)
-    SKILLS=(preskater-plan preskater-review)
+    SKILLS=(preskater-plan preskater-adr preskater-review preskater-security-review)
     ;;
   *)
     echo "unknown bundle: $BUNDLE" >&2

@@ -86,6 +86,63 @@ One schema owner per repository.
 - Do not introduce the second migration path into a repo.
 - If Supabase RLS is enabled, every table exposed through the API needs policies and tests.
 
+## Delivery
+
+Artifacts are built with `preskater-build`, versioned by `preskater-release`, and deployed with `preskater-deploy`.
+
+- Web images and Helm charts are pushed to `<registry>`.
+- Mobile builds use EAS profiles.
+- Image references use digests, never `latest`.
+- Kubernetes manifests are packaged as Helm charts under `charts/<app>`.
+
+```bash
+docker compose up -d --wait          # local services
+helm lint charts/<app>
+helm template <app> charts/<app> -f charts/<app>/values.staging.yaml >/dev/null
+argocd app diff <app>-staging
+argocd app sync <app>-staging
+argocd app wait <app>-staging --health --sync
+eas build --profile production --platform all
+eas observe:metrics-summary --json --non-interactive
+```
+
+## Environments
+
+| Environment | Runs | Deploy path |
+| --- | --- | --- |
+| local | Docker Compose, plus kind/k3d/minikube for charts | Direct and disposable |
+| staging | Kubernetes | ArgoCD `<app>-staging` |
+| production | Kubernetes | ArgoCD `<app>-production` |
+
+Staging exists for every app. Production changes need explicit approval.
+
+## Deploy policy
+
+- ArgoCD is the only staging and production deploy path. Never run `kubectl apply`, `helm install`, or `helm upgrade` against them.
+- Migrations run as the `<app>-migrate` PreSync Job. Never run them from a laptop.
+- Confirm `argocd context` and `kubectl config current-context` before any action.
+- Roll back by reverting the GitOps commit or with `argocd app rollback`. Database migrations are forward-only.
+
+## Release
+
+- Semver follows Conventional Commits.
+- Update `CHANGELOG.md` and `Chart.yaml` for every release.
+- Release candidates (`-rc.N`) go to staging before the final tag.
+- Mobile store submission is a manual step after the EAS build.
+
+## Observability
+
+- Backend and web: Grafana, Prometheus, Loki, and Tempo.
+- Mobile: Expo Observe, queried with `eas observe:*`.
+- Annotate every deploy in Grafana.
+- Check golden signals and SLO burn before declaring success.
+- Use the already-authenticated `kubectl`, `argocd`, `grafana`, and `eas` CLIs. Never print tokens or kubeconfig.
+
+## On-call
+
+- S1 and S2 incidents follow `preskater-incident`; postmortems follow `preskater-postmortem`.
+- Status updates: S1 every 15 minutes, S2 every 30-60.
+
 ## Testing
 
 - Jest for units and integration.
@@ -107,6 +164,8 @@ One schema owner per repository.
 - [ ] `npm run lint`, `npm run typecheck`, `npm run test`, and `npx turbo run build` pass
 - [ ] Relevant Playwright flow passes
 - [ ] Docs, `.env.example`, and changelog updated
+- [ ] Security review for auth, data, infrastructure, or dependency changes
+- [ ] Release checklist completed for production changes
 - [ ] PR/MR body filled with test evidence and risk
 
 ## Gotchas
@@ -118,3 +177,8 @@ One schema owner per repository.
 - Supabase and Prisma migrations can diverge silently. Check which one owns the schema before adding a migration.
 - Expo and Next.js use different public env prefixes.
 - Generated files (`prisma/generated`, `.next`, `dist`, `node_modules`) are never edited by hand.
+- ArgoCD is the only staging and production deploy path. A Git commit to environment values is a deploy when auto-sync is enabled.
+- Docker Compose is local only. Test the Helm chart in a local cluster before release.
+- The migration Job must finish before the app rolls out. A sync without a healthy PreSync hook is a failed deploy.
+- EAS Observe ignores debug builds by default. Do not compare debug metrics to production.
+- A Grafana dashboard that was never updated after a new failure mode is a blind spot, not a signal.

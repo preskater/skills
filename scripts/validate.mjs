@@ -221,7 +221,7 @@ function validateSkill(name) {
     warn(file, `SKILL.md has ${lineCount} lines; keep it under 500`);
   }
 
-  if (/!`/.test(body)) {
+  if (/(^|[^`])!`[^`\n]+`/.test(body)) {
     err(file, "dynamic command injection (!`...`) is Claude-specific and not portable");
   }
 
@@ -321,6 +321,48 @@ function validateCatalog() {
   }
 }
 
+function validateInstallerBundles() {
+  const file = join(ROOT, "scripts/install.sh");
+  if (!existsSync(file)) {
+    err(file, "missing install.sh");
+    return;
+  }
+
+  let catalog;
+  try {
+    catalog = JSON.parse(readFileSync(CATALOG_PATH, "utf8"));
+  } catch {
+    return;
+  }
+
+  const found = new Map();
+  const text = readFileSync(file, "utf8");
+  for (const match of text.matchAll(/^ {2}([a-z][a-z-]*)\)\s*\n\s+SKILLS=\(([^)]*)\)/gm)) {
+    found.set(match[1], match[2].trim().split(/\s+/).filter(Boolean));
+  }
+
+  const bundles = catalog.bundles ?? {};
+
+  for (const [name, list] of Object.entries(bundles)) {
+    const installer = found.get(name);
+    if (!installer) {
+      err(file, `bundle "${name}" is missing from install.sh`);
+      continue;
+    }
+    const expected = [...list].sort().join(" ");
+    const actual = [...installer].sort().join(" ");
+    if (expected !== actual) {
+      err(file, `bundle "${name}" differs from catalog.json`);
+    }
+  }
+
+  for (const name of found.keys()) {
+    if (!bundles[name]) {
+      err(file, `bundle "${name}" is not in catalog.json`);
+    }
+  }
+}
+
 function main() {
   if (!existsSync(SKILLS_DIR)) {
     err(SKILLS_DIR, "missing skills directory");
@@ -333,6 +375,7 @@ function main() {
   }
 
   validateCatalog();
+  validateInstallerBundles();
 
   for (const message of warnings) {
     console.warn(`warning: ${message}`);

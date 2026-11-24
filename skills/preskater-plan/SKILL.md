@@ -4,7 +4,7 @@ description: Plan a code change before editing: confirm the issue, inspect the r
 license: MIT
 metadata:
   owner: platform
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Plan a change
@@ -30,7 +30,7 @@ Produce a written plan and stop. Do not edit files, create branches, or run migr
 4. **Compare approaches.** Offer two or three viable options with tradeoffs, then recommend one. Skip this for trivial changes.
 5. **List the change surface.** Every file to create or modify, with a one-line purpose.
 6. **Plan verification.** Name the Jest tests, Playwright flows, lint, typecheck, and build that prove the change. Say what needs manual checking.
-7. **Call out risk.** Migration impact, auth and authorization changes, public API changes, rollout, and rollback.
+7. **Call out risk and delivery impact.** Migration impact, auth and authorization changes, public API changes, rollout, rollback, and which environments, dashboards, and SLOs are affected.
 8. **List open questions.** Anything you cannot settle from the repository.
 9. **Stop.** Present the plan and ask for approval.
 
@@ -40,6 +40,12 @@ Produce a written plan and stop. Do not edit files, create branches, or run migr
 ## Goal
 
 ## Non-goals
+
+## Acceptance criteria
+- [ ] ...
+
+## Success metrics
+- ...
 
 ## Issue
 #123 — title
@@ -76,4 +82,5 @@ Keep it short enough to read in one screen for a small change.
 - Do not plan around commands that `AGENTS.md` does not define. If a command is missing, ask.
 - Do not assume a library is available. Check `package.json` and the workspace that owns it.
 - If the plan needs a new dependency, name the workspace and the reason.
+- If the change picks a data model, auth approach, infrastructure, or vendor, write an ADR before implementation with `preskater-adr`.
 - If the schema changes, state which migration path owns it and who applies it. The agent never applies a migration.
