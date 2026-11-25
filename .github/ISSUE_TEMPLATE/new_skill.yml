@@ -1,0 +1,85 @@
+name: New skill proposal
+description: Propose a new skill for the catalog.
+title: "feat: "
+labels: ["skill", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) before proposing. A skill should capture a workflow that actually happens, not generic advice.
+
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+      description: Lowercase kebab-case with the preskater- prefix.
+      placeholder: preskater-incident-review
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What do people do inconsistently today, and what does it cost?
+    validations:
+      required: true
+
+  - type: textarea
+    id: procedure
+    attributes:
+      label: Procedure outline
+      description: The steps the agent should follow, in order.
+      placeholder: |
+        1. Read the incident timeline.
+        2. Identify contributing factors.
+        3. Propose action items with owners.
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: What artifact should the skill produce?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harnesses
+    attributes:
+      label: Harnesses
+      description: Where should this work?
+      multiple: true
+      options:
+        - Claude Code
+        - Codex
+        - OpenCode
+    validations:
+      required: true
+
+  - type: textarea
+    id: prompts
+    attributes:
+      label: Trigger prompts
+      description: 5-10 prompts that should activate the skill, and a few that should not.
+    validations:
+      required: true
+
+  - type: textarea
+    id: gotchas
+    attributes:
+      label: Gotchas
+      description: Stack-specific traps the agent would hit without being told.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: This workflow happens often enough to standardize.
+          required: true
+        - label: I searched existing skills and issues.
+          required: true

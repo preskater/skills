@@ -1,0 +1,69 @@
+name: Bug report
+description: Something is broken in a skill, the installer, or the validator.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. For security issues, use [private reporting](../security/advisories/new) instead of a public issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did the agent do, and what did you expect instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: The prompt, command, or steps. Include the skill name.
+      placeholder: |
+        1. Installed with ./scripts/install.sh
+        2. Asked "Plan the change in issue 123"
+        3. The agent ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Harness
+      options:
+        - Claude Code
+        - Codex
+        - OpenCode
+        - Installer or validator
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Skills version
+      description: The release or commit you installed, for example the output of `git describe --tags`.
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Paste the relevant output. Remove secrets and customer data.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and discussions.
+          required: true
+        - label: This is not a security issue.
+          required: true

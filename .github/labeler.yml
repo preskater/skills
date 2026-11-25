@@ -1,0 +1,19 @@
+skill:
+  - changed-files:
+      - any-glob-to-any-file: "skills/**"
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "AGENTS.md"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - "scripts/**"
+
+templates:
+  - changed-files:
+      - any-glob-to-any-file: "templates/**"
