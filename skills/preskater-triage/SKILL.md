@@ -4,7 +4,7 @@ description: Triage a bug report or production incident: reproduce, assign sever
 license: MIT
 metadata:
   owner: platform
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Triage a bug or incident
@@ -26,9 +26,10 @@ Triage produces an issue that someone can act on. Do not fix the bug during tria
    - **S4** — cosmetic, documentation, minor annoyance.
 
    When in doubt between two levels, choose the higher one and say why.
-6. **Find the owner.** Use `CODEOWNERS`, recent commits to the area, or the service map.
-7. **Separate mitigation from fix.** State the fastest way to stop the bleeding, then the real fix.
-8. **Write the note.** Post it to the issue and apply the labels. Do not close the issue.
+6. **Escalate S1 and S2.** Declare the incident and run `preskater-incident`. Triage keeps the issue; the incident skill runs the response.
+7. **Find the owner.** Use `CODEOWNERS`, recent commits to the area, or the service map.
+8. **Separate mitigation from fix.** State the fastest way to stop the bleeding, then the real fix.
+9. **Write the note.** Post it to the issue and apply the labels. Do not close the issue.
 
 ## Output
 

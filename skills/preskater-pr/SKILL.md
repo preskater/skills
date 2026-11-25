@@ -4,7 +4,7 @@ description: Open a pull request or merge request for a completed change: self-r
 license: MIT
 metadata:
   owner: platform
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Open a pull request or merge request
@@ -46,6 +46,7 @@ Run `preskater-verify` first. A PR without evidence is not ready.
 7. **Open the PR/MR** against `main`, as a draft if CI or the change is still in progress.
 8. **Watch CI.** Fix failures. Do not force-push over a review in progress without saying so.
 9. **Merge** only when blocking findings are resolved and CI is green. Use the repository's merge method.
+10. **Hand off to release.** Merging is not releasing. Use `preskater-release`, then `preskater-deploy`.
 
 ## Body template
 

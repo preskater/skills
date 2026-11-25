@@ -4,7 +4,7 @@ description: Review a pull request or merge request against its linked issue: co
 license: MIT
 metadata:
   owner: platform
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Review a change
@@ -49,6 +49,19 @@ Review the diff, not your memory of it. Findings are severity-ranked and actiona
 - Which schema owner is in play, Prisma or Supabase?
 - Is the migration reversible, and does it preserve existing rows?
 - Does any query scan a large table without an index?
+
+### Delivery
+
+- Is the image pinned by digest instead of a mutable tag?
+- Are Helm values per environment, with secrets externalized?
+- Does the migration run as a PreSync hook, and is it expand/contract?
+- Are probes, resource limits, and `securityContext` set?
+- Is the ArgoCD diff limited to the intended resources?
+
+### Observability
+
+- Are new failure modes covered by logs, metrics, traces, or alerts?
+- Are the dashboard and deploy annotation updated for this change?
 
 ### Concurrency and state
 
