@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-26
+
 ### Added
 
 - Ten skills closing the DevOps loop:
@@ -38,3 +40,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Open-source community files: issue templates, pull request template, code of conduct, security policy, support guide, governance, and changelog
 
 [Unreleased]: https://github.com/preskater/skills/commits/main
+[0.3.0]: https://github.com/preskater/skills/releases/tag/v0.3.0
